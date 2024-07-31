@@ -94,6 +94,9 @@ var celsius = 23;
 var fahrenheit = celsiusToFahrenheit(celsius);
 console.log(celsius + " degrees Celsius is equal to " + fahrenheit.toFixed(2) + " degrees Fahrenheit.");*/
 
+
+/*
+
 //Array creation and initialization
 let cars=["BMW","BENZ","LAMBOGINI"];
 console.log(cars);
@@ -162,3 +165,185 @@ let str="A b c d e";
 let words = str.split(" ");
 console.log(words);
 
+*/
+
+
+// ====================================================================================================================================================
+
+// 31/07/2024
+
+//20.grouping array elements
+function groupBy(array, key) {
+    return array.reduce((result, currentValue) => {
+      const groupKey = currentValue[key];
+      if (!result[groupKey]) {
+        result[groupKey] = [];
+      }
+      result[groupKey].push(currentValue);
+      
+      return result;
+    }, {});
+  
+}
+  const data = [
+    { name: 'Alice', age: 25 },
+    { name: 'Bob', age: 25 },
+    { name: 'Charlie', age: 30 },
+    { name: 'David', age: 30 },
+    { name: 'Eve', age: 35 }
+  ];
+
+  //21.Array intersection of two sets
+  const groupedByAge = groupBy(data, 'age');
+  console.log(groupedByAge);
+
+  function intersectArrays(arr1, arr2) {
+    const set2 = new Set(arr2);
+    return arr1.filter(element => set2.has(element));
+  }
+
+  const array1 = [1, 2, 3, 4, 5];
+  const array2 = [4, 5, 6, 7, 8];
+  
+  const intersection = intersectArrays(array1, array2);
+  console.log(intersection); 
+
+  //22.Array manipulation with slice()
+const array = [1, 2, 3, 4, 5];
+const slicedArray = array.slice(1, 4);
+console.log(slicedArray);
+
+//23.Implementing a queue with arrays
+class Queue {
+    constructor() {
+      this.items = [];
+    }
+    enqueue(element) {
+      this.items.push(element);
+    }
+    dequeue() {
+      if (this.isEmpty()) {
+        throw new Error("Queue is empty");
+      }
+      return this.items.shift();
+    }
+    isEmpty() {
+      return this.items.length === 0;
+    }
+    size() {
+      return this.items.length;
+    }
+    peek() {
+      if (this.isEmpty()) {
+        throw new Error("Queue is empty");
+      }
+      return this.items[0];
+    }
+    clear() {
+      this.items = [];
+    }
+  }
+  const queue = new Queue();
+  queue.enqueue(1);
+  queue.enqueue(2);
+  queue.enqueue(3);
+  
+  console.log(queue.dequeue()); 
+  console.log(queue.peek());   
+  console.log(queue.size());    
+  console.log(queue.isEmpty()); 
+  
+  queue.clear();
+  console.log(queue.isEmpty()); 
+
+//24.Implementing a stack with arrays
+class Stack {
+    constructor() {
+      this.items = [];
+    }
+    push(element) {
+      this.items.push(element);
+    }
+    pop() {
+      if (this.isEmpty()) {
+        throw new Error("Stack is empty");
+      }
+      return this.items.pop();
+    }
+    isEmpty() {
+      return this.items.length === 0;
+    }
+    size() {
+      return this.items.length;
+    }
+    peek() {
+      if (this.isEmpty()) {
+        throw new Error("Stack is empty");
+      }
+      return this.items[this.items.length - 1];
+    }
+    clear() {
+      this.items = [];
+    }
+  }
+  const stack = new Stack();
+  stack.push(1);
+  stack.push(2);
+  stack.push(3);
+  
+  console.log(stack.pop());   
+  console.log(stack.peek());   
+  console.log(stack.size());   
+  console.log(stack.isEmpty());
+  
+  stack.clear();
+  console.log(stack.isEmpty());
+
+//25.Array of objects starting with multiple properties
+  const people = [
+    { name: 'Alice', age: 25, city: 'New York' },
+    { name: 'Bob', age: 30, city: 'San Francisco' },
+    { name: 'Charlie', age: 35, city: 'Chicago' },
+    { name: 'David', age: 40, city: 'Los Angeles' },
+    { name: 'Eve', age: 45, city: 'Seattle' }
+  ];
+  console.log(people[3].age);
+
+//27.Comparing 2 arrays of equality
+  function deepEqual(obj1, obj2) {
+    if (obj1 === obj2) {
+      return true;
+    }
+  
+    if (typeof obj1 !== 'object' || obj1 === null || typeof obj2 !== 'object' || obj2 === null) {
+      return false;
+    }
+    const keys1 = Object.keys(obj1);
+    const keys2 = Object.keys(obj2);
+    if (keys1.length !== keys2.length) {
+      return false;
+    }
+    for (const key of keys1) {
+      if (!keys2.includes(key) || !deepEqual(obj1[key], obj2[key])) {
+        return false;
+      }
+    }
+    return true;
+  }
+  function arraysEqual(arr1, arr2) {
+    if (arr1.length !== arr2.length) {
+      return false;
+    }
+    for (let i = 0; i < arr1.length; i++) {
+      if (!deepEqual(arr1[i], arr2[i])) {
+        return false;
+      }
+    }
+    return true;
+  }
+  const arrays1 = [{a: 1}, [1, 2, 3], 'test'];
+  const arrays2 = [{a: 1}, [1, 2, 3], 'test'];
+  const arrays3 = [{a: 2}, [1, 2, 3], 'test'];
+  
+  console.log(arraysEqual(arrays1, arrays2));
+  console.log(arraysEqual(arrays1, arrays3)); 
