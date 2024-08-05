@@ -173,7 +173,7 @@ console.log(words);
 // 31/07/2024
 
 //20.grouping array elements
-function groupBy(array, key) {
+/*function groupBy(array, key) {
     return array.reduce((result, currentValue) => {
       const groupKey = currentValue[key];
       if (!result[groupKey]) {
@@ -192,10 +192,10 @@ function groupBy(array, key) {
     { name: 'David', age: 30 },
     { name: 'Eve', age: 35 }
   ];
-
-  //21.Array intersection of two sets
   const groupedByAge = groupBy(data, 'age');
   console.log(groupedByAge);
+
+//21.Array intersection of two sets
 
   function intersectArrays(arr1, arr2) {
     const set2 = new Set(arr2);
@@ -346,4 +346,69 @@ class Stack {
   const arrays3 = [{a: 2}, [1, 2, 3], 'test'];
   
   console.log(arraysEqual(arrays1, arrays2));
-  console.log(arraysEqual(arrays1, arrays3)); 
+  console.log(arraysEqual(arrays1, arrays3)); */
+
+//=====================================================================================================================================================
+//5/8/24
+
+//28.Converting array of objects
+
+const data = [
+  { id: 1, name: 'John Doe', age: 28 },
+  { id: 2, name: 'Jane Smith', age: 34 },
+  { id: 3, name: 'Michael Johnson', age: 45 }
+];
+const formattedData = data.map(item => ({
+  identifier: item.id,
+  fullName: item.name,
+  years: item.age
+}));
+
+console.log(formattedData);
+
+// 29. Removing array items by index
+function removeItemByIndex(arr, index) {
+  if (index > -1 && index < arr.length) {
+      arr.splice(index, 1);
+  }
+  return arr;
+}
+let array1 = [1, 2, 3, 4, 5];
+ console.log(removeItemByIndex(array1, 2)); // Output: [1, 2, 4, 5]
+
+// 30. Inserting items at a specific position
+function insertItemAt(arr, index, item) {
+  arr.splice(index, 0, item);
+  return arr;
+}
+let array2 = [1, 2, 4, 5];
+console.log(insertItemAt(array2, 2, 3)); // Output: [1, 2, 3, 4, 5]
+
+// 31. Sorting arrays with complex objects
+function sortArrayByProperty(arr, property) {
+  return arr.sort((a, b) => (a[property] > b[property]) ? 1 : (a[property] < b[property]) ? -1 : 0);
+}
+let array3 = [{name: 'John', age: 30}, {name: 'Jane', age: 25}, {name: 'Bill', age: 35}];
+console.log(sortArrayByProperty(array3, 'age')); // Output: [{name: 'Jane', age: 25}, {name: 'John', age: 30}, {name: 'Bill', age: 35}]
+
+// 32. Finding the longest string in an array
+function findLongestString(arr) {
+  return arr.reduce((a, b) => (a.length > b.length) ? a : b, "");
+}
+let array4 = ['short', 'longer', 'longest', 'tiny'];
+console.log(findLongestString(array4)); // Output: 'longest'
+
+//33. Rotating an array
+function rotateArray(arr, steps) {
+  steps = steps % arr.length;
+  return arr.slice(-steps).concat(arr.slice(0, -steps));
+}
+let array5 = [1, 2, 3, 4, 5];
+console.log(rotateArray(array5, 2)); // Output: [4, 5, 1, 2, 3]
+
+// 33. Generating an array of a range
+function generateRange(start, end) {
+  return Array.from({length: end - start + 1}, (_, i) => start + i);
+}
+console.log(generateRange(3, 7)); // Output: [3, 4, 5, 6, 7]
+
